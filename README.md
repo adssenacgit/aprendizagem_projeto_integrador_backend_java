@@ -18,6 +18,8 @@ Caso esteja utilizando uma máquina Windows é só rodar os comandos `docker com
 
 Cuidado que o Docker pode consumir um bom espaço em disco caso fique subindo e descendo muitas vezes o projeto. Dessa forma, para liberar espaço é só rodar o comando `docker system prune` e quando aparecer a opção para escolhar entrar com o valor `Y`
 
+Ao rodar o projeto localmente o swagger da API pode ser acessado na URL `http://localhost:8080/swagger-ui/index.html`
+
 
 ## Estrutura do projeto
 
