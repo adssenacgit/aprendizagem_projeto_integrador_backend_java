@@ -12,6 +12,8 @@ Instalar o Docker:
 
 ## Como rodar o projeto
 
+*No caso de estar em um Windows ou Mac, é necessário que o Docker esteja aberto e inicializado*
+
 Caso esteja utilizando uma máquina Linux ou Mac, basta abrir um terminal da raiz do projeto (na mesma pasta que esse aquivo) e digitar o comando `make docker/up`, quando quiser derrubar o projeto é só utilizar o comando `make docker/down`
 
 Caso esteja utilizando uma máquina Windows é só rodar os comandos `docker compose up --build -d` e para derrubar o projeto o comando `docker compose down`
