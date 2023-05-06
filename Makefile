@@ -14,3 +14,10 @@ docker/up: ## Run the API + database with docker compose
 
 docker/down: ## Kill and remove API and database
 	@docker compose down
+
+docker/restart: ## Restart the app
+	@docker compose down && docker compose up --build
+
+docker/build-from-jar: ## Build jar file
+	@mvn -f pom.xml clean package -Dmaven.test.skip=true
+	@docker compose up --build

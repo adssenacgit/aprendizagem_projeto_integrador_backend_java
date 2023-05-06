@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+import com.senac.projetoIntegrador.senaccoin.exceptions.UserNotFoundException;
 import com.senac.projetoIntegrador.senaccoin.request.NewTransactionRequest;
 import com.senac.projetoIntegrador.senaccoin.response.BalanceResponse;
 import com.senac.projetoIntegrador.senaccoin.response.ErrorResponse;
@@ -34,7 +34,7 @@ public class SenacCoinController {
     @PostMapping
     public ResponseEntity<NewTransactionResponse> addNewMovement(
             @RequestBody(required = true) NewTransactionRequest newSenacCoinMovement) {
-    
+
         service.addNewTRansaction(newSenacCoinMovement);
         NewTransactionResponse response = new NewTransactionResponse();
         response.setStatus("OK");
@@ -59,7 +59,8 @@ public class SenacCoinController {
     }
 
     @GetMapping("/balance/{id}")
-    public ResponseEntity<BalanceResponse> retrieveBalance(@PathVariable(required = true, value = "id") String userId) {
+    public ResponseEntity<BalanceResponse> retrieveBalance(@PathVariable(required = true, value = "id") String userId)
+            throws UserNotFoundException {
         Long balance = service.getUserBalance(userId);
 
         BalanceResponse response = new BalanceResponse();
@@ -68,9 +69,15 @@ public class SenacCoinController {
         return new ResponseEntity<BalanceResponse>(response, HttpStatus.OK);
     }
 
-
     @ExceptionHandler(HttpMessageNotReadableException.class)
-    public ResponseEntity<ErrorResponse> httpMessageNotReadableExceptionHandler(HttpMessageNotReadableException e){
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse("Error parsing JSON", e.getMessage(), null));
+    public ResponseEntity<ErrorResponse> httpMessageNotReadableExceptionHandler(HttpMessageNotReadableException e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(new ErrorResponse("Error parsing JSON", e.getMessage(), null));
+    }
+
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<ErrorResponse> userNotFoundExceptionHandler(UserNotFoundException e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(new ErrorResponse("Error finding user", e.getMessage(), "user may not exists"));
     }
 }

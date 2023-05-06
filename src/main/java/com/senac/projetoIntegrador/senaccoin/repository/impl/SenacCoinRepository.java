@@ -10,6 +10,7 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.scheduling.annotation.Async;
@@ -18,11 +19,16 @@ import org.springframework.stereotype.Repository;
 import com.senac.projetoIntegrador.senaccoin.dto.SenacCoinDto;
 import com.senac.projetoIntegrador.senaccoin.dto.SenacCoinMovimentacaoDto;
 import com.senac.projetoIntegrador.senaccoin.dto.enums.MovimentStatus;
+import com.senac.projetoIntegrador.senaccoin.exceptions.UserNotFoundException;
 import com.senac.projetoIntegrador.senaccoin.repository.ISenacCoinRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 @Repository
 public class SenacCoinRepository implements ISenacCoinRepository {
+
+    private Logger logger = LoggerFactory.getLogger(SenacCoinRepository.class);
 
     private JdbcTemplate dbConnection;
 
@@ -33,6 +39,7 @@ public class SenacCoinRepository implements ISenacCoinRepository {
 
         @Override
         public SenacCoinDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+            
             SenacCoinDto senacCoinDto = new SenacCoinDto();
             senacCoinDto.setSenacCoinSaldo(rs.getLong("senac_coin_saldo"));
             return senacCoinDto;
@@ -85,11 +92,17 @@ public class SenacCoinRepository implements ISenacCoinRepository {
     public List<SenacCoinMovimentacaoDto> getMovimentsByUserId(String userId) {
         return dbConnection.query(queries.getGetMovimentsByUserId(), new SenacCoinMovimentacaoMapper(),
                 new Object[] { userId });
+
     }
 
-    public Long getBalanceByUserId(String userId) {
-        return dbConnection.queryForObject(queries.getGetBalance(), new SenacCoinMapper(), new Object[] { userId })
-                .getSenacCoinSaldo();
+
+    public Long getBalanceByUserId(String userId) throws UserNotFoundException {
+        try {
+            return dbConnection.queryForObject(queries.getGetBalance(), new SenacCoinMapper(), new Object[] { userId }).getSenacCoinSaldo();
+        } catch (EmptyResultDataAccessException e) {
+            logger.error(String.format("Failed to fetch balance to user %s. User not found", userId));
+            throw new UserNotFoundException(String.format("User with id %s not found", userId));
+        }
     }
 
 }

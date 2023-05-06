@@ -40,8 +40,8 @@ CREATE TABLE IF NOT EXISTS senac_coin_movimentacao (
 
 INSERT INTO projetoIntegrador.usuario
 (Id, usuario_cpf, usuario_nome_completo, usuario_apelido, usuario_email, usuario_data_nascimento, usuario_telefone, usuario_data_cadastro, usuario_status, user_name)
-VALUES('a', '12345678911', 'victor', 'dale', 'a@a.com', '2011-12-18 13:17:17', '212121', '2011-12-18 13:17:17', 0, 'doly');
+VALUES('96540dc2-35b6-4de1-b3c2-814dbf16104d', '12345678911', 'victor', 'dale', 'a@a.com', '2011-12-18 13:17:17', '212121', '2011-12-18 13:17:17', 0, 'doly');
 
 INSERT INTO projetoIntegrador.senac_coin
 (senac_coin_saldo, senac_coin_status, usuario_id)
-VALUES(0, 0, 'a');
+VALUES(0, 0, '96540dc2-35b6-4de1-b3c2-814dbf16104d');
