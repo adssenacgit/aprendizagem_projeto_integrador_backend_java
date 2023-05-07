@@ -23,7 +23,7 @@ public class UsuarioController {
 		UsuarioDto usuario = service.getUsuario(id);
 		UsuarioResponse usuarioResponse = new UsuarioResponse();
 		usuarioResponse.setNome(usuario.getNome());
-		//usuarioResponse.setFoto(usuario.getFoto());
+		usuarioResponse.setFoto(usuario.getFoto());
 		return new ResponseEntity<UsuarioResponse>(usuarioResponse, HttpStatus.OK);
 	}
 }

@@ -1,6 +1,5 @@
 package com.senac.projetoIntegrador.usuario.dto;
 
-//import java.sql.Blob;
 import java.sql.Timestamp;
 
 public class UsuarioDto {
@@ -12,7 +11,7 @@ public class UsuarioDto {
 	private Timestamp dataNascimento;
 	private String telefone;
 	private Timestamp dataCadastro;
-	//private Blob foto;
+	private byte[] foto;
 	private int status;
 	private String username;
 	
@@ -63,6 +62,12 @@ public class UsuarioDto {
 	}
 	public void setDataCadastro(Timestamp dataCadastro) {
 		this.dataCadastro = dataCadastro;
+	}
+	public byte[] getFoto() {
+		return foto;
+	}
+	public void setFoto(byte[] foto) {
+		this.foto = foto;
 	}
 	public int getStatus() {
 		return status;

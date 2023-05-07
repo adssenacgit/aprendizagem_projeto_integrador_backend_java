@@ -1,10 +1,8 @@
 package com.senac.projetoIntegrador.usuario.response;
 
-//import java.sql.Blob;
-
 public class UsuarioResponse {
 	private String nome;
-	//private Blob foto;
+	private byte[] foto;
 
 	public String getNome() {
 		return nome;
@@ -12,5 +10,13 @@ public class UsuarioResponse {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	
+	public byte[] getFoto() {
+		return foto;
+	}
+
+	public void setFoto(byte[] foto) {
+		this.foto = foto;
 	}
 }
