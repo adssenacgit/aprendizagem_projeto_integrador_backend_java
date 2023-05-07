@@ -17,7 +17,4 @@ public class QueriesBadge {
 		return getLatestBadgesByUsuarioId;
 	}
 
-	public void setGetLatestBadgesByUsuarioId(String getLatestBadgesByUsuarioId) {
-		this.getLatestBadgesByUsuarioId = getLatestBadgesByUsuarioId;
-	}
 }

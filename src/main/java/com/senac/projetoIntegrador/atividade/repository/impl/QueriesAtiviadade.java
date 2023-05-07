@@ -16,10 +16,6 @@ public class QueriesAtiviadade {
 	public String getGetLatestAtividadesByUsuarioId() {
 		return getLatestAtividadesByUsuarioId;
 	}
-
-	public void setGetLatestAtividadesByUsuarioId(String getLatestAtividadesByUsuarioId) {
-		this.getLatestAtividadesByUsuarioId = getLatestAtividadesByUsuarioId;
-	}
 	
 	
 }
