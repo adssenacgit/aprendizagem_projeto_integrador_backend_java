@@ -12,6 +12,33 @@ public class SenacCoinMovimentacaoDto {
     private MovimentStatus senacCoinMovimentacaoStatus;
     private String usuarioId;
 
+    
+
+    public SenacCoinMovimentacaoDto(Timestamp senacCoinMovimentacaoDate,
+            String senacCoinMovimentacaoObservacao, Long senacCoinMovimentacaoValor,
+            MovimentStatus senacCoinMovimentacaoStatus, String usuarioId) {
+        this.senacCoinMovimentacaoDate = senacCoinMovimentacaoDate;
+        this.senacCoinMovimentacaoObservacao = senacCoinMovimentacaoObservacao;
+        this.senacCoinMovimentacaoValor = senacCoinMovimentacaoValor;
+        this.senacCoinMovimentacaoStatus = senacCoinMovimentacaoStatus;
+        this.usuarioId = usuarioId;
+    }
+    
+
+    public SenacCoinMovimentacaoDto(Long senacCoinMovimentacaoId, Timestamp senacCoinMovimentacaoDate,
+            String senacCoinMovimentacaoObservacao, Long senacCoinMovimentacaoValor,
+            MovimentStatus senacCoinMovimentacaoStatus, String usuarioId) {
+        this.senacCoinMovimentacaoId = senacCoinMovimentacaoId;
+        this.senacCoinMovimentacaoDate = senacCoinMovimentacaoDate;
+        this.senacCoinMovimentacaoObservacao = senacCoinMovimentacaoObservacao;
+        this.senacCoinMovimentacaoValor = senacCoinMovimentacaoValor;
+        this.senacCoinMovimentacaoStatus = senacCoinMovimentacaoStatus;
+        this.usuarioId = usuarioId;
+    }
+
+    public SenacCoinMovimentacaoDto() {
+    }
+
     public Long getSenacCoinMovimentacaoId() {
         return senacCoinMovimentacaoId;
     }
