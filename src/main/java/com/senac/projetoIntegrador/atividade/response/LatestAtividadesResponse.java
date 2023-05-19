@@ -3,24 +3,33 @@ package com.senac.projetoIntegrador.atividade.response;
 import java.sql.Timestamp;
 
 public class LatestAtividadesResponse {
-	private String listaDescricao;
-	private Timestamp listaDataFim;
+	private String descricao;
+	private Timestamp dataFim;
+	private String nomeUc;
 	
-	public String getListaDescricao() {
-		return listaDescricao;
-	}
-	public void setListaDescricao(String listaDescricao) {
-		this.listaDescricao = listaDescricao;
-	}
-	public Timestamp getListaDataFim() {
-		return listaDataFim;
-	}
-	public LatestAtividadesResponse(String listaDescricao, Timestamp listaDataFim) {
+	public LatestAtividadesResponse(String descricao, Timestamp dataFim, String nomeUc) {
 		super();
-		this.listaDescricao = listaDescricao;
-		this.listaDataFim = listaDataFim;
+		this.descricao = descricao;
+		this.dataFim = dataFim;
+		this.nomeUc = nomeUc;
 	}
-	public void setListaDataFim(Timestamp listaDataFim) {
-		this.listaDataFim = listaDataFim;
+	public String getDescricao() {
+		return descricao;
 	}
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+	public Timestamp getDataFim() {
+		return dataFim;
+	}
+	public void setDataFim(Timestamp dataFim) {
+		this.dataFim = dataFim;
+	}
+	public String getNomeUc() {
+		return nomeUc;
+	}
+	public void setNomeUc(String nomeUc) {
+		this.nomeUc = nomeUc;
+	}
+	
 }

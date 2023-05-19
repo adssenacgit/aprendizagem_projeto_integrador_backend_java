@@ -11,8 +11,4 @@ public class QueriesUsuario {
 	public String getGetUsuarioById() {
 		return getUsuarioById;
 	}
-
-	public void setGetUsuarioById(String getUsuarioById) {
-		this.getUsuarioById = getUsuarioById;
-	}
 }

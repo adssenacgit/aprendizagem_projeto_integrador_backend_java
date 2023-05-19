@@ -11,6 +11,14 @@ public class AtividadeDto {
 	private int ordem;
 	private int status;
 	
+	public AtividadeDto() {
+		super();
+	}
+	public AtividadeDto(String descricao, Timestamp dataInicio) {
+		super();
+		this.descricao = descricao;
+		this.dataInicio = dataInicio;
+	}
 	public Long getId() {
 		return id;
 	}
