@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.senac.projetoIntegrador.senaccoin.exceptions.InsuficientBalanceException;
 import com.senac.projetoIntegrador.senaccoin.exceptions.UserNotFoundException;
 import com.senac.projetoIntegrador.senaccoin.request.NewTransactionRequest;
 import com.senac.projetoIntegrador.senaccoin.response.BalanceResponse;
@@ -33,7 +35,8 @@ public class SenacCoinController {
 
     @PostMapping
     public ResponseEntity<NewTransactionResponse> addNewMovement(
-            @RequestBody(required = true) NewTransactionRequest newSenacCoinMovement) {
+            @RequestBody(required = true) NewTransactionRequest newSenacCoinMovement)
+            throws UserNotFoundException, InsuficientBalanceException {
 
         service.addNewTRansaction(newSenacCoinMovement);
         NewTransactionResponse response = new NewTransactionResponse();
@@ -79,5 +82,11 @@ public class SenacCoinController {
     public ResponseEntity<ErrorResponse> userNotFoundExceptionHandler(UserNotFoundException e) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body(new ErrorResponse("Error finding user", e.getMessage(), "user may not exists"));
+    }
+
+    @ExceptionHandler(InsuficientBalanceException.class)
+    public ResponseEntity<ErrorResponse> insuficientBalanceExceptionHandler(InsuficientBalanceException e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(new ErrorResponse("Not enough money", e.getMessage(), null));
     }
 }
